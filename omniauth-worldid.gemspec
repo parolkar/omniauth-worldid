@@ -20,9 +20,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "omniauth-oauth2", "~> 1.8"
+  spec.add_dependency "eth", "~> 0.5"
 
   spec.add_development_dependency "rspec", "~> 3.12"
   spec.add_development_dependency "rack-test", "~> 2.0"
+  spec.add_development_dependency "rack-session", ">= 1"
   spec.add_development_dependency "webmock", "~> 3.18"
   spec.add_development_dependency "rubocop", "~> 1.50"
 end

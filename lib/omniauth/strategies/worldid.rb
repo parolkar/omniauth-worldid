@@ -68,8 +68,8 @@ module OmniAuth
         end
       end
 
-      private
-
+      # Called by OmniAuth::Strategy#callback_call as a public method; it must
+      # stay public (a private override breaks dispatch with NoMethodError).
       def callback_phase
         level = verification_level
         min = options.min_verification_level
