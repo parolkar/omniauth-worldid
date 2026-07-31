@@ -72,6 +72,13 @@ RSpec.describe OmniAuth::Strategies::Worldid do
     end
   end
 
+  describe "#callback_phase visibility" do
+    it "is public so OmniAuth can invoke it as a method" do
+      expect(described_class.public_method_defined?(:callback_phase)).to be true
+      expect(described_class.private_method_defined?(:callback_phase)).to be false
+    end
+  end
+
   describe "info hash" do
     before do
       allow(strategy).to receive(:raw_info).and_return(

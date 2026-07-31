@@ -68,8 +68,12 @@ module OmniAuth
         end
       end
 
-      # Called by OmniAuth::Strategy#callback_call as a public method; it must
-      # stay public (a private override breaks dispatch with NoMethodError).
+      # OmniAuth declares #callback_phase as a public hook it calls from
+      # Strategy#callback_call. Declare it public to honor that API contract:
+      # OmniAuth::OAuth2 1.9 defines a public #callback_phase this overrides,
+      # and OmniAuth::Builder/middleware introspection (and any host code that
+      # calls strategy.callback_phase via a reference) relies on it being public.
+      # (It was previously private, which broke the public API contract.)
       def callback_phase
         level = verification_level
         min = options.min_verification_level
